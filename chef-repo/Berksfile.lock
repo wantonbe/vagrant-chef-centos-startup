@@ -1,0 +1,7 @@
+{
+  "sources": {
+    "yum": {
+      "locked_version": "3.0.2"
+    }
+  }
+}
