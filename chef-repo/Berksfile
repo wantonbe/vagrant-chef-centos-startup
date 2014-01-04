@@ -1,3 +1,8 @@
 site :opscode
 
-cookbook 'yum'
+# community cookbooks
+
+cookbook "yum"
+cookbook "build-essential"
+
+# community outside cookbooks
