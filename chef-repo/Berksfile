@@ -4,5 +4,6 @@ site :opscode
 
 cookbook "yum"
 cookbook "build-essential"
+cookbook "nginx"
 
 # community outside cookbooks
