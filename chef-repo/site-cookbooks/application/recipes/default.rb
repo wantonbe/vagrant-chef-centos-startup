@@ -29,3 +29,5 @@ end
 end
 
 node.run_state.delete('document_root')
+
+include_recipe 'application::composer'
