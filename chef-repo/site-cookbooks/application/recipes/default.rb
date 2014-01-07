@@ -14,6 +14,7 @@ node.run_state['document_root'] = '/srv/application/public'
 directory "#{node.run_state['document_root']}" do
   owner 'vagrant'
   group 'vagrant'
+  recursive true
   action :create
 end
 
