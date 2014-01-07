@@ -1,11 +1,11 @@
 server {
   listen   80;
   server_name  <%= node['hostname'] %>;
+  root   /srv/application/public;
+  index  index.php index.html;
 
   access_log  <%= node['nginx']['log_dir'] %>/<%= node['hostname'] %>.access.log;
+  error_log  <%= node['nginx']['log_dir'] %>/<%= node['hostname'] %>.error.log;
 
-  location / {
-    root   /srv/application/public;
-    index  index.html index.htm;
-  }
+  include conf.d/php-fpm;
 }

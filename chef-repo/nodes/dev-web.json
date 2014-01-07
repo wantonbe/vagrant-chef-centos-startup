@@ -1,5 +1,5 @@
 {
-  "run_list":[
+  "run_list": [
       "recipe[yum]"
     , "recipe[build-essential::rhel]"
     , "recipe[setting::network]"
@@ -24,5 +24,32 @@
     }
     , "default_site_enabled": false
     , "worker_processes": 2
+  }
+  , "php": {
+      "version": "5.4.23"
+    , "install_method": "source"
+    , "source": {
+        "version": "5.4.23"
+    }
+    , "directives": {}
+    , "fpm_user": "nginx"
+    , "fpm_group": "nginx"
+    , "packages": [
+        "php"
+      , "php-devel"
+      , "php-cli"
+      , "php-pear"
+      , "php-fpm"
+    ]
+  }
+  , "php-fpm": {
+      "conf_file": "/etc/php-fpm.conf"
+    , "pool_conf_dir": "/etc/php-fpm.d"
+    , "log_dir": "/var/log/php-fpm"
+    , "pid_dir": "/var/run/php-fpm"
+    , "log_level": "notice"
+    , "emergency_restart_threshold": 0
+    , "emergency_restart_interval": 0
+    , "process_control_timeout": 0
   }
 }

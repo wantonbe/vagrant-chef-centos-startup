@@ -8,6 +8,14 @@
 #
 include_recipe "nginx"
 
+cookbook_file 'php-fpm' do
+  path "#{node['nginx']['dir']}/conf.d/php-fpm"
+  source 'nginx/conf.d/php-fpm'
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 # deploy your sites configuration from the files/ directory in your cookbook
 template 'dev.local' do
   path "#{node['nginx']['dir']}/sites-available/dev.local"
@@ -21,4 +29,3 @@ end
 nginx_site 'dev.local' do
   action :enable
 end
-
