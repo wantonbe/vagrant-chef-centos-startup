@@ -6,5 +6,6 @@ cookbook "yum"
 cookbook "build-essential"
 cookbook "nginx"
 cookbook "php"
+cookbook "vim"
 
 # community outside cookbooks
