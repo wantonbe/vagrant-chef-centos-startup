@@ -8,6 +8,7 @@
     , "recipe[setting::stop-services]"
     , "recipe[setting::sysctl]"
     , "recipe[setting::timezone]"
+    , "recipe[user::default]"
     , "recipe[application::default]"
     , "recipe[development-tool::default]"
   ]
@@ -17,6 +18,10 @@
       }
   }
   , "hostname": "dev.localhost"
+  , "user": {
+      "data_bag_name": "users"
+    , "search_groups": ["devops"]
+  }
   , "nginx": {
       "version": "1.4.4"
     , "install_method": "source"
