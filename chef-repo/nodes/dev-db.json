@@ -1,0 +1,34 @@
+{
+  "run_list":[
+      "recipe[yum-epel]"
+    , "recipe[yum::mysql-community]"
+    , "recipe[build-essential::rhel]"
+    , "recipe[setting::network]"
+    , "recipe[setting::ntpdate]"
+    , "recipe[setting::selinux]"
+    , "recipe[setting::stop-services]"
+    , "recipe[setting::sysctl]"
+    , "recipe[setting::timezone]"
+    , "recipe[user::default]"
+    , "recipe[mysql::community-server]"
+  ]
+  , "default_attributes": {
+      "build_essential": {
+        "compiletime": true
+      }
+  }
+  , "hostname": "db.localhost"
+  , "user": {
+      "data_bag_name": "users"
+    , "search_groups": ["devops"]
+  }
+  , "mysql": {
+      "allow_remote_root": true
+    , "remove_anonymous_users": true
+    , "remove_test_database": true
+    , "server": {
+          "data_bag_name": "mysql"
+        , "data_bag_item_name": "server"
+      }
+  }
+}
