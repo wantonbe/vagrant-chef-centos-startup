@@ -49,4 +49,41 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #   chef.json = { :mysql_password => "foo" }
     # end
   end
+
+  config.vm.define "dev-db" do |db|
+    db.vm.box = "CentOS-6.4-x86_64"
+  
+    db.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
+  
+    # db.vm.network :forwarded_port, guest: 80, host: 8080
+  
+    db.vm.network :private_network, ip: "172.16.1.110"
+  
+    # Share an additional folder to the guest VM.
+    # db.vm.synced_folder "../data", "/vagrant_data"
+  
+    db.vm.provider :virtualbox do |vb|
+      # # Don't boot with headless mode
+      # vb.gui = true
+    
+      # Use VBoxManage to customize the VM. For example to change memory:
+      vb.name = "dev-db"
+      vb.customize ["modifyvm", :id , "--cpus", "1"]
+      vb.customize ["modifyvm", :id , "--memory", "1024"]
+      vb.customize ["modifyvm", :id , "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id , "--natdnsproxy1", "on"]
+    end
+  
+    # Enable provisioning with chef solo
+    #
+    # db.vm.provision :chef_solo do |chef|
+    #   chef.cookbooks_path = ["./chef-repo/cookbooks", "./chef-repo/site-cookbooks"]
+    #   chef.roles_path = "./chef-repo/roles"
+    #   chef.data_bags_path = "./chef-repo/data_bags"
+    #   chef.add_role "db"
+    #
+    #   # You may also specify custom JSON attributes:
+    #   chef.json = { :mysql_password => "foo" }
+    # end
+  end
 end
