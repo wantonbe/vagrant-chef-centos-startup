@@ -28,7 +28,7 @@ end
 execute "install-composer" do
   cwd "#{cache_dir}"
   command "php #{cache_file}"
-  action :nothing
+  action :run
 end
 
 link "/usr/local/bin/composer" do
