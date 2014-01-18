@@ -1,6 +1,7 @@
 {
   "run_list": [
-      "recipe[yum]"
+      "recipe[yum-epel]"
+    , "recipe[yum::mysql-community]"
     , "recipe[build-essential::rhel]"
     , "recipe[setting::network]"
     , "recipe[setting::ntpdate]"
@@ -9,6 +10,7 @@
     , "recipe[setting::sysctl]"
     , "recipe[setting::timezone]"
     , "recipe[user::default]"
+    , "recipe[mysql::community-client]"
     , "recipe[application::default]"
     , "recipe[development-tool::default]"
   ]
