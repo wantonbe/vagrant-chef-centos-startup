@@ -12,8 +12,8 @@ include_recipe 'application::nginx'
 node.run_state['document_root'] = '/srv/application/public'
 
 directory "#{node.run_state['document_root']}" do
-  owner 'vagrant'
-  group 'vagrant'
+  owner "#{node[:php][:fpm_user]}"
+  group "#{node[:php][:fpm_group]}"
   recursive true
   action :create
 end
@@ -22,8 +22,8 @@ end
   cookbook_file "#{name}" do
     path "#{node.run_state['document_root']}/#{name}"
     source "public/#{name}"
-    owner "vagrant"
-    group "vagrant"
+    owner "#{node[:php][:fpm_user]}"
+    group "#{node[:php][:fpm_group]}"
     mode 0644
   end
 end
