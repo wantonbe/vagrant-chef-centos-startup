@@ -1,0 +1,42 @@
+set nocompatible
+
+if has('autocmd')
+  autocmd FileType * set formatoptions-=ro
+endif
+
+set modeline
+set modelines=5
+
+set number
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab
+
+"------- Encoding --------
+set encoding=utf8
+set fileencoding=utf8
+
+set backspace=indent,eol
+
+"------- Search --------
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+
+"------- Look & Feel --------
+set list
+set listchars=tab:^\ ,trail:~
+
+set hlsearch
+
+set showcmd
+set laststatus=2
+
+set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=
+highlight Statusline term=NONE cterm=NONE ctermfg=black ctermbg=white
+
+syntax on
+
+"------- Key Map -------

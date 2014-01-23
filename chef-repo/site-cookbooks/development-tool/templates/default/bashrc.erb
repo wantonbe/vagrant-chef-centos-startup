@@ -1,0 +1,16 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export PS1='[\u@\h \[\e[0m\]\[\e[33m\]\W\[\e[0m\]]\$ '
+
+export TERM=xterm-color
+export HISTSIZE=10000
+
+# User specific aliases and functions
+alias rm="rm -i"
+alias ls="ls --color"
+alias vi=/usr/local/bin/vim
