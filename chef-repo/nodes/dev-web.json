@@ -1,6 +1,6 @@
 {
   "run_list": [
-      "recipe[yum-epel]"
+      "recipe[yum-epel::default]"
     , "recipe[yum::mysql-community]"
     , "recipe[build-essential::rhel]"
     , "recipe[setting::network]"
@@ -29,8 +29,11 @@
     , "install_method": "source"
     , "source": {
         "version": "1.4.4"
+      , "use_existing_user": false
     }
     , "default_site_enabled": false
+    , "user": "nginx"
+    , "group": "nginx"
     , "worker_processes": 2
   }
   , "php": {
@@ -40,8 +43,11 @@
         "version": "5.4.23"
     }
     , "directives": {}
-    , "fpm_user": "nginx"
-    , "fpm_group": "nginx"
+    , "ini": {
+        "timezone": "Asia/Tokyo"
+    }
+    , "fpm_user": "wadm"
+    , "fpm_group": "wadm"
     , "packages": [
         "php"
       , "php-devel"
