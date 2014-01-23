@@ -1,0 +1,39 @@
+Vagrant x Chef (for CentOS)
+===
+
+Introduction
+---
+Vagrant 用の CentOS 環境スタートアップセットです
+セットアップすると下記環境が作成されます
+
+* nginx
+* php (php-fpm)
+* mysql
+
+Prepare
+---
+事前に以下のソフトウェア、モジュールをインストールしておいてください。
+
+* ruby >= 1.9
+* bundler
+* VirtualBox
+    * https://www.virtualbox.org/
+* Vagrant
+    * http://www.vagrantup.com/
+
+Setup
+---
+下記コマンドを実行してください
+
+```
+$ git clone https://github.com/wantonbe/vagrant-chef-centos-startup.git
+$ vagrant up
+$ vagrant ssh-config >> ~/.ssh/config
+$ vi ~/.ssh/config
+Host を適当な名前に変更 --- [下記の hostname で使う]
+$ bundle install --path=vendor
+$ cd chef-repo
+$ bundle exec knife solo prepare [hostname]
+$ bundle exec berks install --path cookbooks
+$ bundle exec knife solo cook [hostname]
+```
