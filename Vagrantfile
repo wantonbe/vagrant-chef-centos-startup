@@ -39,15 +39,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # path, and data_bags path (all relative to this Vagrantfile), and adding
     # some recipes and/or roles.
     #
-    # web.vm.provision :chef_solo do |chef|
-    #   chef.cookbooks_path = ["./chef-repo/cookbooks", "./chef-repo/site-cookbooks"]
-    #   chef.roles_path = "./chef-repo/roles"
-    #   chef.data_bags_path = "./chef-repo/data_bags"
-    #   chef.add_role "web"
-    #
-    #   # You may also specify custom JSON attributes:
-    #   chef.json = { :mysql_password => "foo" }
-    # end
+    web.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = ["./chef-repo/cookbooks", "./chef-repo/site-cookbooks"]
+      chef.roles_path = "./chef-repo/roles"
+      chef.data_bags_path = "./chef-repo/data_bags"
+      chef.add_role "dev-web"
+    end
   end
 
   config.vm.define "dev-db" do |db|
@@ -76,14 +73,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
     # Enable provisioning with chef solo
     #
-    # db.vm.provision :chef_solo do |chef|
-    #   chef.cookbooks_path = ["./chef-repo/cookbooks", "./chef-repo/site-cookbooks"]
-    #   chef.roles_path = "./chef-repo/roles"
-    #   chef.data_bags_path = "./chef-repo/data_bags"
-    #   chef.add_role "db"
-    #
-    #   # You may also specify custom JSON attributes:
-    #   chef.json = { :mysql_password => "foo" }
-    # end
+    db.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = ["./chef-repo/cookbooks", "./chef-repo/site-cookbooks"]
+      chef.roles_path = "./chef-repo/roles"
+      chef.data_bags_path = "./chef-repo/data_bags"
+      chef.add_role "dev-db"
+    end
   end
 end
