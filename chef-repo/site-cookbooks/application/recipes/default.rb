@@ -9,7 +9,15 @@
 include_recipe 'application::php'
 include_recipe 'application::nginx'
 
-node.run_state['document_root'] = '/srv/application/public'
+node.run_state['application_root'] = '/srv/application'
+node.run_state['document_root'] = "#{node.run_state['application_root']}/public"
+
+directory "#{node.run_state['application_root']}" do
+  owner "#{node[:php][:fpm_user]}"
+  group "#{node[:php][:fpm_group]}"
+  recursive true
+  action :create
+end
 
 directory "#{node.run_state['document_root']}" do
   owner "#{node[:php][:fpm_user]}"
@@ -28,6 +36,7 @@ end
   end
 end
 
+node.run_state.delete('application_root')
 node.run_state.delete('document_root')
 
 include_recipe 'application::composer'
