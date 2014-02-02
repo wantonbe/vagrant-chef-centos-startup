@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "development-tool::git"
 include_recipe "development-tool::vim"
 
 %w{develop}.each do |group|
