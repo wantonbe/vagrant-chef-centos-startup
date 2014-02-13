@@ -6,6 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+package "ntpdate" do
+  action :install
+end
+
 cron 'ntpdate' do
   minute '0'
   hour '5'
