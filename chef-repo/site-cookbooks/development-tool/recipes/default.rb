@@ -44,6 +44,13 @@ include_recipe "development-tool::vim"
           mode "0644"
         end
   
+        template "#{home_dir}/.dir_colors" do
+          source "dir_colors.erb"
+          owner u['username']
+          group u['gid'] || u['username']
+          mode "0644"
+        end
+
         template "#{home_dir}/.vimrc" do
           source "vimrc.erb"
           owner u['username']

@@ -22,6 +22,10 @@ git "#{cache_dir}/git" do
   repository "git://github.com/git/git.git"
   reference "master"
   action :sync
+  not_if do
+    ::File.exists?("/usr/local/bin/git")
+  end
+  notifies :run, "execute[install-git]", :immediately
 end
 
 execute "install-git" do
@@ -32,8 +36,5 @@ execute "install-git" do
     make all doc
     make install install-doc
   EOH
-  action :run
-  not_if do
-    ::File.exists?("/usr/local/bin/git")
-  end
+  action :nothing
 end
