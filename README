@@ -39,23 +39,33 @@ $ bundle exec berks install --path cookbooks
 data bag を作成する
 $ cd chef-repo
 $ openssl rand -base64 512 > data_bag_key
+
+開発ユーザー
 $ # EDITOR=vi bundle exec knife solo data bag create users wadm
 $ # EDITOR=vi bundle exec knife solo data bag edit users wadm
 {
-  "id": "[user]",
+  "id": "wadm", # user名
   "password": "[hashed password]", # openssl passwd -1 'xxxx' で表示される値1
   "ssh_keys": [
-    "ssh-rsa [PRIVATE KEY]"
+    "ssh-rsa [PRIVATE KEY]" # なくても大丈夫
   ],
   "groups": [
     "devops"
   ],
-  "home": "/home/[USER_NAME]",
+  "home": "/home/wadm", # user名に合わせる
   "uid": [USER ID],
   "gid": [GROUP ID],
   "shell": "/bin/bash"
 }
 
+mysqlユーザー
+$ # EDITOR=vi bundle exec knife solo data bag create mysql server
+{
+  "id": "server",
+  "server_debian_password": "[plain password]",
+  "server_root_password": "[plain password]",
+  "server_repl_password": "[plain password]"
+}
 
 provisioning
 $ bundle exec knife solo cook [hostname]
