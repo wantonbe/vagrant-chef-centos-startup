@@ -4,9 +4,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.berkshelf.enabled = true
+  # config.berkshelf.enabled = true
 
-  config.berkshelf.berksfile_path = "./chef-repo/Berksfile"
+  # config.berkshelf.berksfile_path = "./chef-repo/Berksfile"
 
   config.vm.define "dev-web" do |web|
     web.vm.box = "CentOS-6.4-x86_64"
