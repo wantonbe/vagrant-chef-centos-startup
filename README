@@ -35,5 +35,28 @@ $ bundle install --path=vendor
 $ cd chef-repo
 $ bundle exec knife solo prepare [hostname]
 $ bundle exec berks install --path cookbooks
+
+data bag を作成する
+$ cd chef-repo
+$ openssl rand -base64 512 > data_bag_key
+$ # EDITOR=vi bundle exec knife solo data bag create users wadm
+$ # EDITOR=vi bundle exec knife solo data bag edit users wadm
+{
+  "id": "[user]",
+  "password": "[hashed password]", # openssl passwd -1 'xxxx' で表示される値1
+  "ssh_keys": [
+    "ssh-rsa [PRIVATE KEY]"
+  ],
+  "groups": [
+    "devops"
+  ],
+  "home": "/home/[USER_NAME]",
+  "uid": [USER ID],
+  "gid": [GROUP ID],
+  "shell": "/bin/bash"
+}
+
+
+provisioning
 $ bundle exec knife solo cook [hostname]
 ```
