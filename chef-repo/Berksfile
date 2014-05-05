@@ -3,6 +3,7 @@ site :opscode
 # community cookbooks
 
 cookbook "yum"
+cookbook "yum-epel", "~> 0.3"
 cookbook "build-essential"
 cookbook "nginx"
 cookbook "php"

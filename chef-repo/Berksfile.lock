@@ -3,6 +3,9 @@
     "yum": {
       "locked_version": "3.0.2"
     },
+    "yum-epel": {
+      "locked_version": "0.3.6"
+    },
     "build-essential": {
       "locked_version": "1.4.2"
     },
@@ -29,9 +32,6 @@
     },
     "runit": {
       "locked_version": "1.5.8"
-    },
-    "yum-epel": {
-      "locked_version": "0.2.0"
     },
     "xml": {
       "locked_version": "1.2.0"
